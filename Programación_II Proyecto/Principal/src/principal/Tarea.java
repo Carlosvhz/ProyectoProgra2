@@ -63,8 +63,5 @@ public class Tarea extends Actividad{
         if (isRecordar()&&isMostrar()) {
            JOptionPane.showMessageDialog(null,"Recuerde la tarea "+super.getTitulo()+" :3");
         }
-        if (isMostrar()) {
-            
-        }
     }
 }

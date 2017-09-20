@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -85,6 +86,8 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane20 = new javax.swing.JScrollPane();
         jl_LikesMuroGeneral = new javax.swing.JList<>();
+        jScrollPane22 = new javax.swing.JScrollPane();
+        jl_NombrePublicacion = new javax.swing.JList<>();
         mb_componentes = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mi_solicitudes = new javax.swing.JMenuItem();
@@ -168,10 +171,12 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jPanel30 = new javax.swing.JPanel();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jl_amigos = new javax.swing.JList<>();
         jLabel50 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
+        jPanel55 = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        jl_amigos = new javax.swing.JList<>();
+        bt_eliminarAmigo = new javax.swing.JButton();
         jd_misSolicitudes = new javax.swing.JDialog();
         jPanel16 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
@@ -285,7 +290,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         jLabel55 = new javax.swing.JLabel();
         jScrollPane13 = new javax.swing.JScrollPane();
         jl_videos = new javax.swing.JList<>();
-        jButton2 = new javax.swing.JButton();
+        bt_reproducirVideo = new javax.swing.JButton();
         jd_comentariosModificar = new javax.swing.JDialog();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel42 = new javax.swing.JPanel();
@@ -644,6 +649,9 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         jl_LikesMuroGeneral.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         jScrollPane20.setViewportView(jl_LikesMuroGeneral);
 
+        jl_NombrePublicacion.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jScrollPane22.setViewportView(jl_NombrePublicacion);
+
         javax.swing.GroupLayout jp_murogeneralLayout = new javax.swing.GroupLayout(jp_murogeneral);
         jp_murogeneral.setLayout(jp_murogeneralLayout);
         jp_murogeneralLayout.setHorizontalGroup(
@@ -651,7 +659,9 @@ public class Pantalla_Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_murogeneralLayout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane19, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
+                .addComponent(jScrollPane22, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane20, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -660,6 +670,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane20, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
             .addComponent(jScrollPane19, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane22)
         );
 
         jTabbedPane1.addTab("Muro General", jp_murogeneral);
@@ -821,6 +832,11 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         ppm_LikeComentShare.add(mi_comentar);
 
         mi_compartir.setText("Compartir");
+        mi_compartir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_compartirActionPerformed(evt);
+            }
+        });
         ppm_LikeComentShare.add(mi_compartir);
 
         mi_leer.setText("Leer");
@@ -1285,13 +1301,43 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         jPanel30.setBackground(new java.awt.Color(102, 102, 102));
         jPanel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jl_amigos.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
-        jScrollPane12.setViewportView(jl_amigos);
-
         jLabel50.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jLabel50.setText("Aleros");
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/principal/Amigos.png"))); // NOI18N
+
+        jl_amigos.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        jScrollPane12.setViewportView(jl_amigos);
+
+        bt_eliminarAmigo.setText("Eliminar de mis amigos");
+        bt_eliminarAmigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_eliminarAmigoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel55Layout = new javax.swing.GroupLayout(jPanel55);
+        jPanel55.setLayout(jPanel55Layout);
+        jPanel55Layout.setHorizontalGroup(
+            jPanel55Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel55Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane12)
+                .addContainerGap())
+            .addGroup(jPanel55Layout.createSequentialGroup()
+                .addGap(171, 171, 171)
+                .addComponent(bt_eliminarAmigo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel55Layout.setVerticalGroup(
+            jPanel55Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel55Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bt_eliminarAmigo)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
         jPanel30.setLayout(jPanel30Layout);
@@ -1300,12 +1346,13 @@ public class Pantalla_Principal extends javax.swing.JFrame {
             .addGroup(jPanel30Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel55, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel30Layout.createSequentialGroup()
                         .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 124, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1317,8 +1364,8 @@ public class Pantalla_Principal extends javax.swing.JFrame {
                     .addGroup(jPanel30Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel55, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2445,7 +2492,12 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         jl_videos.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
         jScrollPane13.setViewportView(jl_videos);
 
-        jButton2.setText("Reproducir");
+        bt_reproducirVideo.setText("Reproducir");
+        bt_reproducirVideo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_reproducirVideoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel39Layout = new javax.swing.GroupLayout(jPanel39);
         jPanel39.setLayout(jPanel39Layout);
@@ -2456,8 +2508,8 @@ public class Pantalla_Principal extends javax.swing.JFrame {
                 .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel39Layout.createSequentialGroup()
                         .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton2))
+                        .addGap(18, 18, 18)
+                        .addComponent(bt_reproducirVideo))
                     .addGroup(jPanel39Layout.createSequentialGroup()
                         .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2476,12 +2528,13 @@ public class Pantalla_Principal extends javax.swing.JFrame {
                         .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)))
                 .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane13)
                     .addGroup(jPanel39Layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jButton2)
-                        .addGap(0, 101, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_reproducirVideo)
+                        .addGap(127, 127, 127))))
         );
 
         javax.swing.GroupLayout jd_ReproductorVideoLayout = new javax.swing.GroupLayout(jd_ReproductorVideo.getContentPane());
@@ -3674,6 +3727,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
             if (video!=null) {
                 UsuarioActivado.setMiPublicacion(new Video(video, new Date()));
                 video = null;
+                tf_rutaVideo.setText("");
                 JOptionPane.showMessageDialog(jd_publicaciones,"Publicacion agregada");
             }else{
                 JOptionPane.showMessageDialog(jd_publicaciones, "Añada un video");
@@ -3774,7 +3828,12 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         JFileChooser jf = new JFileChooser();
         int seleccion = jf.showOpenDialog(jd_publicaciones);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
-            video = jf.getSelectedFile();
+            try {
+                tf_rutaVideo.setText(jf.getSelectedFile().getPath());
+                video = jf.getSelectedFile().toURL();
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Pantalla_Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_bt_buscarVideoMouseClicked
 
@@ -3810,6 +3869,13 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_stopMouseClicked
 
     private void mi_reproductorVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_reproductorVideoActionPerformed
+        DefaultListModel modelo = new DefaultListModel();
+        for (Publicacion p : UsuarioActivado.getMisPublicaciones()) {
+            if (p instanceof Video) {
+                modelo.addElement(p);
+            }
+        }
+        jl_videos.setModel(modelo);
         jd_ReproductorVideo.pack();
         jd_ReproductorVideo.setModal(true);
         jd_ReproductorVideo.setLocationRelativeTo(null);
@@ -4160,6 +4226,58 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_agregarComentarioMouseClicked
 
+    private void bt_eliminarAmigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_eliminarAmigoMouseClicked
+        if (jl_amigos.getSelectedIndex()>-1) {
+            DefaultListModel modelo = (DefaultListModel)jl_amigos.getModel();
+            Usuario amigoEliminar = (Usuario)modelo.getElementAt(jl_amigos.getSelectedIndex());
+            amigoEliminar.getAmigos().remove(UsuarioActivado);
+            UsuarioActivado.getAmigos().remove(amigoEliminar);
+            JOptionPane.showMessageDialog(jd_amigos, "Amigo eliminado del grupo de amigos");
+            reload();
+        }
+    }//GEN-LAST:event_bt_eliminarAmigoMouseClicked
+
+    private void mi_compartirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_compartirActionPerformed
+        DefaultListModel modeloLista = (DefaultListModel)jl_muroGeneral.getModel();
+        Object objeto = modeloLista.getElementAt(jl_muroGeneral.getSelectedIndex());
+        if ( objeto instanceof Comentario) {
+                Comentario comentario = (Comentario)objeto;
+                UsuarioActivado.setMiPublicacion(new PublicacionCompartida(comentario, new Date()));
+            }else if (objeto instanceof Fotografia) {
+                Fotografia fotografia = (Fotografia)objeto;
+                UsuarioActivado.setMiPublicacion(new PublicacionCompartida(fotografia, new Date()));
+            }else if (objeto instanceof AlbumFotos) {
+                AlbumFotos album = (AlbumFotos)objeto;
+                UsuarioActivado.setMiPublicacion(new PublicacionCompartida(album, new Date()));
+            }else if (objeto instanceof Video) {
+                Video video = (Video)objeto;
+                UsuarioActivado.setMiPublicacion(new PublicacionCompartida(video, new Date()));
+            }
+        recargarMuro();
+    }//GEN-LAST:event_mi_compartirActionPerformed
+
+    private void bt_reproducirVideoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_reproducirVideoMouseClicked
+        if (jl_videos.getSelectedIndex()>-1) {
+            DefaultListModel videos = (DefaultListModel)jl_videos.getModel();
+            Video video = (Video)videos.getElementAt(jl_videos.getSelectedIndex());
+            URL urlMedios = null;
+            try {
+                urlMedios = video.getUrl();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (urlMedios!=null) {
+                JFrame reproductor = new JFrame("Talves funciona");
+                reproductor.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                ReproductorVideo rep = new ReproductorVideo(urlMedios);
+                reproductor.add(rep);
+                reproductor.pack();
+                reproductor.setSize(1280, 720);
+                reproductor.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_bt_reproducirVideoMouseClicked
+
 
     public Usuario verificarCuenta(String nickname, String contraseña){
         for (Usuario usuario : usuarios) {
@@ -4191,15 +4309,18 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         DefaultListModel modelo = new DefaultListModel();
         DefaultListModel modeloGeneral = new DefaultListModel();
         DefaultListModel modeloLikes = new DefaultListModel();
+        DefaultListModel modeloNombre = new DefaultListModel();
         for (Publicacion p : UsuarioActivado.getMisPublicaciones()) {
             modelo.addElement(p);
         }
         for (Usuario amigo : UsuarioActivado.getAmigos()) {
             for (Publicacion publicacion : amigo.getMisPublicaciones()) {
+                modeloNombre.addElement(amigo.getNickname());
                 modeloGeneral.addElement(publicacion);
                 modeloLikes.addElement("Likes: "+publicacion.getLikes()+" | Comentarios: "+publicacion.getComentarios().size());
             }
         }
+        jl_NombrePublicacion.setModel(modeloNombre);
         jl_LikesMuroGeneral.setModel(modeloLikes);
         jl_muroGeneral.setModel(modeloGeneral);
         jl_mimuro.setModel(modelo);
@@ -4298,6 +4419,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     private javax.swing.JButton bt_buscarImagen;
     private javax.swing.JButton bt_buscarVideo;
     private javax.swing.JButton bt_buscarfotografia;
+    private javax.swing.JButton bt_eliminarAmigo;
     private javax.swing.JButton bt_eliminarFotografia;
     private javax.swing.JButton bt_ingresarusuario;
     private javax.swing.JButton bt_iniciarsesion;
@@ -4310,6 +4432,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     private javax.swing.JButton bt_play;
     private javax.swing.JButton bt_publicar;
     private javax.swing.JButton bt_rechazarSolicitud;
+    private javax.swing.JButton bt_reproducirVideo;
     private javax.swing.JButton bt_stop;
     private javax.swing.JComboBox<String> cbx_mandarMensaje;
     private javax.swing.JComboBox<String> cbx_nuevaRegion;
@@ -4320,7 +4443,6 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dc_fechaComentario;
     private com.toedter.calendar.JDateChooser dc_fechadenacimiento;
     private com.toedter.calendar.JDateChooser dc_nuevaFecha;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -4450,6 +4572,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel52;
     private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel54;
+    private javax.swing.JPanel jPanel55;
     private javax.swing.JPanel jPanel56;
     private javax.swing.JPanel jPanel57;
     private javax.swing.JPanel jPanel6;
@@ -4470,6 +4593,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -4507,6 +4631,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_quitar_usuario;
     private javax.swing.JList<String> jl_LikesMuroGeneral;
     private javax.swing.JList<String> jl_ModificarFotografias;
+    private javax.swing.JList<String> jl_NombrePublicacion;
     private javax.swing.JList<String> jl_amigos;
     private javax.swing.JList<String> jl_comentarios;
     private javax.swing.JList<String> jl_eliminarUsuario;
@@ -4598,6 +4723,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     ArrayList<String> notaciones = new ArrayList();
     DefaultMutableTreeNode nodoModificar;
     Fotografia fotoSeleccionada;
-    File MP3, video;
+    File MP3;
+    URL video;
     int posicion;
 }

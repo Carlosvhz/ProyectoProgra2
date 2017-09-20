@@ -7,6 +7,8 @@ package principal;
 
 
 import java.io.File;
+import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -16,18 +18,25 @@ import java.util.Date;
  */
 public class Video extends Publicacion{
     
-    private File archivo;
+    private URL url;
     
-    public Video(File archivo, Date fecha){
+    public Video(URL url, Date fecha){
         super(fecha);
-        this.archivo = archivo;
+        this.url = url;
     }
 
-    public File getArchivo() {
-        return archivo;
+    public URL getUrl() {
+        return url;
     }
 
-    public void setArchivo(File archivo) {
-        this.archivo = archivo;
+    public void setUrl(URL url) {
+        this.url = url;
     }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat formato = new SimpleDateFormat("YY/MM/dd");
+        return "Video, publicada el "+super.getFecha();
+    }
+
 }
