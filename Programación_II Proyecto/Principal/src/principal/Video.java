@@ -5,14 +5,10 @@
  */
 package principal;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
+
 import java.io.File;
-import java.net.URL;
 import java.util.Date;
-import javax.media.Manager;
-import javax.media.Player;
-import javax.swing.JPanel;
+
 
 /**
  *
@@ -33,26 +29,5 @@ public class Video extends Publicacion{
 
     public void setArchivo(File archivo) {
         this.archivo = archivo;
-    }
-    
-    
-    public void Componente (URL urlMedios){
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, true);
-        try {
-            Player reproductor = Manager.createRealizedPlayer(urlMedios);
-            Component video = reproductor.getVisualComponent();
-            Component controles = reproductor.getControlPanelComponent();
-            if (video!=null) {
-                panel.add(video, BorderLayout.CENTER);
-            }
-            if (controles!=null) {
-                panel.add(controles, BorderLayout.SOUTH);
-            }
-            reproductor.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

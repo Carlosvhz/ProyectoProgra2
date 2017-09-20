@@ -39,6 +39,9 @@ public class Publicacion implements Serializable{
         return likes;
     }
 
+    public void like(){
+        this.likes++;
+    }
     public void setLikes(int likes) {
         this.likes = likes;
     }  
